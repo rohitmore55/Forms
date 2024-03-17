@@ -22,7 +22,7 @@
             var formFields = document.getElementById('form-fields');
             var count = formFields.childElementCount + 1;
             var newField = document.createElement('div');
-            newField.className = 'field-container'; // Add a class to identify the field container
+            newField.className = 'field-container';
             newField.innerHTML = '<input type="text" name="field_name_' + count + '" placeholder="Field Name">' +
                                  '<input type="text" name="field_value_' + count + '" placeholder="Field Value">';
             formFields.appendChild(newField);
@@ -32,7 +32,7 @@
             var formFields = document.getElementById('form-fields');
             var lastChild = formFields.lastElementChild;
             if (lastChild) {
-                formFields.removeChild(lastChild); // Remove the last field container
+                formFields.removeChild(lastChild);
             }
         });
     </script>
