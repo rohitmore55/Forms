@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Single Page Form</title>
+</head>
+<body>
+    <form id="single-form" method="POST">
+        {% csrf_token %}
+        <div id="form-fields">
+            {{ form.as_p }}
+        </div>
+        <button type="button" id="add-field">Add Field</button>
+        <button type="button" id="remove-field">Remove Field</button>
+        <button type="submit" name="submit_default_form">Submit Default Form</button>
+        <button type="submit" name="submit_edited_form">Submit Edited Form</button>
+    </form>
+
+    <script>
+        document.getElementById('add-field').addEventListener('click', function() {
+            var formFields = document.getElementById('form-fields');
+            var count = formFields.childElementCount + 1;
+            var newField = document.createElement('div');
+            newField.className = 'field-container'; // Add a class to identify the field container
+            newField.innerHTML = '<input type="text" name="field_name_' + count + '" placeholder="Field Name">' +
+                                 '<input type="text" name="field_value_' + count + '" placeholder="Field Value">';
+            formFields.appendChild(newField);
+        });
+
+        document.getElementById('remove-field').addEventListener('click', function() {
+            var formFields = document.getElementById('form-fields');
+            var lastChild = formFields.lastElementChild;
+            if (lastChild) {
+                formFields.removeChild(lastChild); // Remove the last field container
+            }
+        });
+    </script>
+</body>
+</html>
